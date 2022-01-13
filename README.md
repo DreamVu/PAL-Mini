@@ -23,7 +23,7 @@ Confirm the following dependencies. These are must have to proceed further
 Once complete please reboot the system.
 
 ## Step 3. Installing Camera Data File 
-The data files are delivered along with the purchase of the PAL-Mini camera. In case you have not received them, please request for the files by filling out a [form](https://support.dreamvu.com/portal/en/newticket) or contact at support@dreamvu.com 
+The data files are delivered along with the purchase of the PAL-Mini camera. In case you have not received them, please request for the files by filling out a [form](https://support.dreamvu.com/portal/en/newticket)
 
       chmod +x setup.sh
       sudo ./setup.sh
@@ -32,7 +32,7 @@ The data files are delivered along with the purchase of the PAL-Mini camera. In 
 For rest of the evaluation of the ODOA software, please read the [Evaluation Manual](https://github.com/DreamVu/PAL-Mini/blob/JetPack-4.4/docs/PAL%20Mini%20NX%20SDK%20Documentation.pdf)
 
 ## Support 
-If you need help or more informations check our [Help Center](https://support.dreamvu.com/portal/en/home) or join our [Community](https://support.dreamvu.com/portal/en/community/dreamvu-inc).
+If you need help or more informations check our [Help Center](https://support.dreamvu.com/portal/en/home) or join our [Community](https://support.dreamvu.com/portal/en/community/dreamvu-inc) or you can email us directly at support@dreamvu.com 
 
 ## Contributing
 Feel free to open an issue if you find a bug, or a pull request for bug fixes, features or other improvements.
