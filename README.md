@@ -1,5 +1,5 @@
 # PAL Mini
-DreamVu [PAL-Mini](https://dreamvu.com/pal-mini/)
+the most compact 360° 3D Vision System. [PAL-Mini](https://dreamvu.com/pal-mini/) is the world's smallest 360° depth camera. It is extremel low-power and easy to add to any sensor stack to eliminate near-field blind spots.  
 
 Please follow the instructions given below on any of the Nvidia Jetson embedded boards with Jetpack 4.4.1 to install the software.
 
@@ -15,18 +15,11 @@ Confirm the following dependencies. These are must have to proceed further
 
 - ### Python 3.6 libraries (pytorch, torchvision, numpy, PIL, etc.)
 
-## Step 2. Installing ODOA 
+## Step 2. Installing PAL-Mini SDK
       cd installations
       chmod +x ./*.sh
-      sudo ./install.sh arg1 arg2
+      sudo ./install.sh 
 
-  - arg1: It can be either 0, 1 or can be skipped.  On selecting 1, installation will build the whole software based on the particular Nvidia Jetson architecture and will enable higher performance. This may take a few hours to complete the installation. On selecting 0, it will quickly build the software by using some of the pre-configured libraries provided. If arg1 is skipped, then arg2 must also be skipped.
-
-  - arg2:  If the arg1 is 1, then the second argument takes in the amount of RAM the process will use during the build of the software in MBs. Following are the recommended values for different Nvidia Jetson architectures.
-            For Jetson Xavier NX arg2: 3500
-            For Jetson Xavier AGX arg2: 8000
-            For Jetson Nano arg2: 1000
-            
 Once complete please reboot the system.
 
 ## Step 3. Installing Camera Data File 
@@ -36,7 +29,7 @@ The data files are delivered along with the purchase of the PAL-Mini camera. In 
       sudo ./setup.sh
       
 ## Documentation 
-For rest of the evaluation of the ODOA software, please read the [Evaluation Manual](https://docs.google.com/document/d/e/2PACX-1vT0KGrxAZAFmHouoZ9KqdyIKfMxm8D2guiUmzQXzTD3PZFb8kEgWr40M-RvbwUUU-mBssBwHZWi3ZqH/pub)
+For rest of the evaluation of the ODOA software, please read the [Evaluation Manual](https://github.com/DreamVu/PAL-Mini/blob/JetPack-4.4/docs/PAL%20Mini%20NX%20SDK%20Documentation.pdf)
 
 ## Support 
 If you need help or more informations check our [Help Center](https://support.dreamvu.com/portal/en/home) or join our [Community](https://support.dreamvu.com/portal/en/community/dreamvu-inc).
