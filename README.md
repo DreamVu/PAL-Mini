@@ -1,12 +1,12 @@
 # PAL Mini
 the most compact 360° 3D Vision System. [PAL-Mini](https://dreamvu.com/pal-mini/) is the world's smallest 360° depth camera. It is extremel low-power and easy to add to any sensor stack to eliminate near-field blind spots.  
 
-Please follow the instructions given below on any of the Nvidia Jetson embedded boards with Jetpack 4.4.1 to install the software.
+Please follow the instructions given below on any of the Intel x86 CPU install the software.
 
 ## Step 1. Installing Dependencies 
 Confirm the following dependencies. These are must have to proceed further
 
-- ### Ubuntu 16.04 64 bit on Intel x86 CPU
+- ### Ubuntu 16.04 64 bit
 - ### OpenCV 3.4.4 and OpenCV Contrib 3.4.4 libraries. 
   Follow these steps to install the required OpenCV dependencies. 
 -      cd installations
