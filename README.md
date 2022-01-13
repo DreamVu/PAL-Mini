@@ -1,43 +1,38 @@
-Initial Steps to follow
+# PAL Mini
+The most compact 360° 3D Vision System. [PAL-Mini](https://dreamvu.com/pal-mini/) is the world's smallest 360° depth camera. It is extremel low-power and easy to add to any sensor stack to eliminate near-field blind spots.  
 
-1. Unzip the SDK folder 
-2. Copy the provided libPAL_CAMERA.so file in the lib folder of the SDK.
+Please follow the instructions given below on any of the Intel x86 CPU to install the software.
 
+## Step 1. Installing Dependencies 
+Confirm the following dependencies. These are must have to proceed further
 
-# SDK-Tutorials and Explorer 
+- ### Ubuntu 18.04 64 bit
+- ### OpenCV 3.4.4 and OpenCV Contrib 3.4.4 libraries. 
+  Follow these steps to install the required OpenCV dependencies. 
+-      cd installations
+       chmod +x ./*.sh
+       sudo ./opencv.sh
 
-## PRE-REQUIREMENT: Install OpenCV and OpenCV-contrib modules
-	1. Open docs/PAL Documentation.pdf file
-	
-	2. Follow the instructions as mentioned in the section 3.1 of the pdf file
+- ### Python 3.6 libraries (pytorch, torchvision, numpy, PIL, etc.)
 
-	
-## Install other dependencies and Compile the SDK Tutorials - This section is same as 3.2 in the pdf file
-1. Go to installations folder and Change the install bash scripts file permissions
-```
-$ cd installations && chmod +x ./*.sh
-```
+## Step 2. Installing PAL-Mini SDK
+      cd installations
+      chmod +x ./*.sh
+      sudo ./install.sh 
 
-2. Run install.sh
-```
-$ sudo ./install.sh
-```
+Once complete please reboot the system.
 
-## Run Explorer
-1. Open the Explorer folder
-```
-$ cd Explorer
-```
+## Step 3. Installing Camera Data File 
+The data files are delivered along with the purchase of the PAL-Mini camera. In case you have not received them, please request for the files by filling out a [form](https://support.dreamvu.com/portal/en/newticket)
 
-2. Change the Explorer file permissions
-```
-$ chmod +x ./Explorer
-```
+      chmod +x setup.sh
+      sudo ./setup.sh
+      
+## Documentation 
+For rest of the evaluation of the ODOA software, please read the [Evaluation Manual](https://github.com/DreamVu/PAL-Mini/blob/Ubuntu-18.04/docs/PAL%20Mini%20Documentation.pdf)
 
-3. Run
-```
-$ ./Explorer
-```
+## Support 
+If you need help or more informations check our [Help Center](https://support.dreamvu.com/portal/en/home) or join our [Community](https://support.dreamvu.com/portal/en/community/dreamvu-inc) or you can email us directly at support@dreamvu.com 
 
-
-
+## Contributing
+Feel free to open an issue if you find a bug, or a pull request for bug fixes, features or other improvements.
