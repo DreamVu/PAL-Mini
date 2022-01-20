@@ -1,12 +1,12 @@
 # PAL Mini
 The most compact 360° 3D Vision System. [PAL-Mini](https://dreamvu.com/pal-mini/) is the world's smallest 360° depth camera. It is extremel low-power and easy to add to any sensor stack to eliminate near-field blind spots.  
 
-Please follow the instructions given below on any of the Nvidia Jetson embedded boards with Jetpack 4.4.1 to install the software.
+Please follow the instructions given below on any of the Nvidia Jetson embedded boards with Jetpack 4.4 to install the software.
 
 ## Step 1. Installing Dependencies 
 Confirm the following dependencies. These are must have to proceed further
 
-- ### Jetpack 4.4.1
+- ### Jetpack 4.4
 - ### CUDA enabled OpenCV 4.4.0 and OpenCV Contrib 4.4.0 libraries. 
   Follow these steps to install the required OpenCV dependencies. 
 -      cd installations
@@ -27,7 +27,7 @@ The libPAL_Camera.so file is delivered along with the purchase of the PAL-Mini c
 
 
 ## Documentation 
-For rest of the evaluation of the ODOA software, please read the [Evaluation Manual](https://github.com/DreamVu/PAL-Mini/blob/JetPack-4.4/docs/PAL%20Mini%20NX%20SDK%20Documentation.pdf)
+For rest of the evaluation of the PAL-Mini SDK, please read the [Evaluation Manual](https://github.com/DreamVu/PAL-Mini/blob/JetPack-4.4/docs/PAL%20Mini%20NX%20SDK%20Documentation.pdf)
 
 ## Support 
 If you need help or more informations check our [Help Center](https://support.dreamvu.com/portal/en/home) or join our [Community](https://support.dreamvu.com/portal/en/community/dreamvu-inc) or you can email us directly at support@dreamvu.com 
