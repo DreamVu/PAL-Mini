@@ -7,6 +7,9 @@ Please follow the instructions given below on any of the Nvidia Jetson embedded 
 Confirm the following dependencies. These are must have to proceed further
 
 - ### Jetpack 4.4
+- ### Install Git-lfs before cloning this repo. 
+-     sudo apt-get install git-lfs
+
 - ### CUDA enabled OpenCV 4.4.0 and OpenCV Contrib 4.4.0 libraries. 
   Follow these steps to install the required OpenCV dependencies. 
 -      cd installations
@@ -14,8 +17,6 @@ Confirm the following dependencies. These are must have to proceed further
        sudo ./opencv.sh
 
 - ### Python 3.6 libraries (pytorch, torchvision, numpy, PIL, etc.)
-- ### Install Git-lfs to clone the large lib files
--     sudo apt-get install git-lfs
 
 ## Step 2. Installing PAL-Mini SDK
       cd installations
