@@ -14,6 +14,8 @@ Confirm the following dependencies. These are must have to proceed further
        sudo ./opencv.sh
 
 - ### Python 3.6 libraries (pytorch, torchvision, numpy, PIL, etc.)
+- ### Install Git-lfs to clone some of the large files iin this repo
+-     sudo apt-get install git-lfs
 
 ## Step 2. Installing PAL-Mini SDK
       cd installations
