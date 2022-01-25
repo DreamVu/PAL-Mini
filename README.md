@@ -6,7 +6,7 @@ Please follow the instructions given below on any of the Nvidia Jetson embedded 
 ## Step 1. Installing Dependencies 
 Confirm the following dependencies. These are must have to proceed further
 
-- ### Jetpack 4.4
+- ### Jetpack 4.4. This version of the software is only compatible with Jetson Xavier NX. 
 - ### Install Git-lfs before cloning this repo. 
 -     sudo apt-get install git-lfs
 
