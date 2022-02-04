@@ -4,10 +4,10 @@ The most compact 360° 3D Vision System. [PAL-Mini](https://dreamvu.com/pal-mini
 Please follow the instructions given below on any of the Nvidia Jetson embedded boards with Jetpack 4.4 to install the software.
 
 ## Step 1. Clone the repository 
-- sudo apt-get install git-lfs
-- git clone https://github.com/DreamVu/PAL-USB.git
-- cd PAL-Mini
-- git lfs pull
+-     sudo apt-get install git-lfs
+-     git clone https://github.com/DreamVu/PAL-USB.git
+-     cd PAL-Mini
+-     git lfs pull
 
 ## Step 2. Installing Dependencies 
 Confirm the following dependencies. These are must have to proceed further
