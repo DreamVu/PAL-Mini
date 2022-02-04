@@ -5,9 +5,9 @@ Please follow the instructions given below on any of the Nvidia Jetson embedded 
 
 ## Step 1. Clone the repository 
 -     sudo apt-get install git-lfs
--     git clone https://github.com/DreamVu/PAL-USB.git
--     cd PAL-Mini
--     git lfs pull
+      git clone https://github.com/DreamVu/PAL-USB.git
+      cd PAL-Mini
+      git lfs pull
 
 ## Step 2. Installing Dependencies 
 Confirm the following dependencies. These are must have to proceed further
