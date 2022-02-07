@@ -5,7 +5,7 @@ Please follow the instructions given below on any of the Intel x86 with CUDA ena
 
 ## Step 1. Clone the repository 
 -     sudo apt-get install git-lfs
-      git clone https://github.com/DreamVu/PAL-Mini.git
+      git clone -b Ubuntu-18.04-GPU --single-branch https://github.com/DreamVu/PAL-Mini.git
       cd PAL-Mini
       git lfs pull
       
