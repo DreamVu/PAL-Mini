@@ -5,8 +5,9 @@ sudo apt-get install -y libjpeg-dev libpng-dev libtiff-dev
 sudo apt-get install -y libjasper-dev
 sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
 sudo apt-get install -y libxvidcore-dev libx264-dev
-sudo apt-get install -y libgtk-3-dev
+sudo apt-get install -y libgtk-3-dev libgtk2.0-dev libhdf5-dev
 sudo apt-get install -y libatlas-base-dev gfortran
+sudo apt-get install -y ffmpeg
 
 cd ~
 wget -O opencv.zip https://github.com/opencv/opencv/archive/3.4.4.zip
@@ -30,7 +31,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D OPENCV_ENABLE_NONFREE=OFF \
     -D BUILD_EXAMPLES=OFF ..
 
-make -j4
+make -j6
 sudo make install
 sudo ldconfig
 pkg-config --modversion opencv

@@ -1,13 +1,29 @@
-chmod +x ./dependencies.sh
-sudo ./dependencies.sh
+#!/bin/bash
 
-chmod +x ./setup_env.sh
-./setup_env.sh
+chmod +x ./*.sh
 
-sudo cp ./bin_files/depth.bin /usr/local/bin/depth.bin
+./uninstall.sh
 
-python3 test_py_installations.py
+./dependencies.sh
 
-chmod +x ./PAL_udev.sh
+chmod +x ../Explorer/Explorer
+
+./install_onnxrt.sh
+
+./install_openvino.sh
+
+./ros_cmake.sh
+
+./setup_camera_data.sh 
+
+cd python_data
+
+chmod +x setup_python_lib.sh
+./setup_python_lib.sh
+
+cd ..
+
+./setup_connection.sh
+
 sudo ./PAL_udev.sh
 
