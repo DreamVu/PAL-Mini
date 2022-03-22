@@ -25,5 +25,7 @@ cd ..
 
 ./setup_connection.sh
 
+./setup_timeout_patch.sh
+
 sudo ./PAL_udev.sh
 
