@@ -18,19 +18,22 @@ Confirm the following dependencies. These are must have to proceed further
   Follow these steps to install the required OpenCV dependencies. 
 -      cd installations
        chmod +x ./*.sh
-       sudo ./opencv.sh
+       ./opencv.sh
 
 - ### Python 3.6 libraries (pytorch, torchvision, numpy, PIL, etc.)
 
 ## Step 3. Installing PAL-Mini SDK
       cd installations
       chmod +x ./*.sh
-      sudo ./install.sh 
+      ./install.sh 
 
 Once complete please reboot the system.
 
-## Step 4. Installing libPAL_Camera.so
-The libPAL_Camera.so file is delivered along with the purchase of the PAL-Mini camera. In case you have not received them, please request for the file by filling out a [form](https://support.dreamvu.com/portal/en/newticket). Place the libPAL_Camera.so file in the ./lib/ folder. 
+## Step 4. Installing Camera Data File
+The data files are delivered along with the purchase of the PAL Mini camera. In case you have not received them, please request for the files by filling out a [form](https://support.dreamvu.com/portal/en/newticket)
+
+      chmod +x setup.sh
+      ./setup.sh
       
 ## Documentation 
 For rest of the evaluation of the ODOA software, please read the [Evaluation Manual](https://github.com/DreamVu/PAL-Mini/blob/Ubuntu-18.04/docs/PAL%20Mini%20Documentation.pdf)
