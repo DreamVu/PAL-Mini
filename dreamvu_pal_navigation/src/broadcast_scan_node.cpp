@@ -139,10 +139,10 @@ int main(int argc, char **argv)
 	PAL::Mode def_mode = PAL::Mode::LASER_SCAN;
 
 	char path[1024];
-	sprintf(path,"/home/dreamvu/data%d/",camera_indexes[0]);
+	sprintf(path,"/data%d/",camera_indexes[0]);
 
 	char path2[1024];
-	sprintf(path2,"/home/dreamvu/data%d/",6);
+	sprintf(path2,"/data%d/",6);
 
 	PAL::SetPathtoData(path, path2);
 
