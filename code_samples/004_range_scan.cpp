@@ -1,17 +1,17 @@
 /*
 
-CODE SAMPLE # 004: Laser scan panorama
-This code will grab the left panorama with laser scan overlayed on it and would be displayed in a window using opencv
+CODE SAMPLE # 004: Range scan panorama
+This code will grab the left panorama with range scan overlayed on it and would be displayed in a window using opencv
 
 
 >>>>>> Compile this code using the following command....
 
-g++ 004_laser_scan.cpp ../lib/libPAL.so ../lib/libPAL_DE1.so `pkg-config --libs --cflags opencv libusb-1.0`   -O3  -o 004_laser_scan.out -I../include/ -lv4l2 -lpthread  -ludev -std=c++11
+g++ 004_range_scan.cpp ../lib/libPAL.so ../lib/libPAL_DE1.so `pkg-config --libs --cflags opencv libusb-1.0`   -O3  -o 004_range_scan.out -I../include/ -lv4l2 -lpthread  -ludev -std=c++11
 
 
 >>>>>> Execute the binary file by typing the following command...
 
-./004_laser_scan.out
+./004_range_scan.out
 
 
 >>>>>> KEYBOARD CONTROLS:
@@ -37,7 +37,7 @@ using namespace std;
 int main( int argc, char** argv )
 {
 
-	namedWindow( "PAL Laser Scan", WINDOW_NORMAL ); // Create a window for display.
+	namedWindow( "PAL Mini Range Scan", WINDOW_NORMAL ); // Create a window for display.
 
 	int width, height;
 	PAL::Mode mode = PAL::Mode::LASER_SCAN;
@@ -81,7 +81,7 @@ int main( int argc, char** argv )
 
 	//width and height are the dimensions of each panorama.
 	//Each of the panoramas are displayed at otheir original resolution.
-	resizeWindow("PAL Laser Scan", width, height);
+	resizeWindow("PAL Mini Range Scan", width, height);
 
 	int key = ' ';
 
@@ -90,7 +90,7 @@ int main( int argc, char** argv )
 	Mat output = cv::Mat::zeros(height, width, CV_8UC3);
 
 	//Display the overlayed image
-	imshow( "PAL Laser Scan", output);
+	imshow( "PAL Mini Range Scan", output);
 
 	//27 = esc key. Run the loop until the ESC key is pressed
 	while(key != 27)
@@ -101,7 +101,7 @@ int main( int argc, char** argv )
 		data =  PAL::GrabRangeScanData();	
 
 		//Display the overlayed image
-		imshow( "PAL Laser Scan", data[0].marked_left);  
+		imshow( "PAL Mini Range Scan", data[0].marked_left);  
 
 		//Wait for the keypress - with a timeout of 1 ms
 
