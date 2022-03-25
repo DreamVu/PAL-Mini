@@ -54,7 +54,7 @@ bool g_bRosOK = true;
 
 PAL::CameraProperties g_CameraProperties;
 
-image_transport::Publisher leftpub1,depthPub1,floorPub;
+image_transport::Publisher leftpub1, stereoleftpub1, stereorightpub1, depthPub1,floorPub;
 ros::Publisher laserPub1;
 ros::Publisher pointcloudPub1;
 
@@ -236,6 +236,8 @@ int main(int argc, char **argv)
     filter_chain_.configure("/scan_filter_chain", nh);
 	//Creating all the publishers
 	leftpub1 = it.advertise("/dreamvu/pal/odoa/get/left", 1);		
+	stereoleftpub1 = it.advertise("/dreamvu/pal/odoa/get/stereo/left", 1);		
+	stereorightpub1 = it.advertise("/dreamvu/pal/odoa/get/stereo/right", 1);				
 	laserPub1 = nh.advertise<sensor_msgs::LaserScan>("/dreamvu/pal/odoa/get/scan", 1);  
     pointcloudPub1 = nh.advertise<sensor_msgs::PointCloud2>("/dreamvu/pal/odoa/get/point_cloud", 1);
 	depthPub1 = it.advertise("/dreamvu/pal/odoa/get/depth", 1);  
@@ -298,8 +300,10 @@ int main(int argc, char **argv)
 		int left1Subnumber = leftpub1.getNumSubscribers();
 		int laserscan1Subnumber = laserPub1.getNumSubscribers();
 		int depth1Subnumber = depthPub1.getNumSubscribers();
-		int floorSubnumber = floorPub.getNumSubscribers();				
-		int subnumber = left1Subnumber+laserscan1Subnumber+pointcloudSubnumber+floorSubnumber;
+		int floorSubnumber = floorPub.getNumSubscribers();
+		int stereoleft1Subnumber = stereoleftpub1.getNumSubscribers();				
+		int stereoright1Subnumber = stereorightpub1.getNumSubscribers();						
+		int subnumber = left1Subnumber+laserscan1Subnumber+pointcloudSubnumber+floorSubnumber+stereoright1Subnumber+stereoleft1Subnumber;
         bool overlaid1 = false;
         updatePC = false;
         
@@ -310,7 +314,6 @@ int main(int argc, char **argv)
 
             data1 = PAL::GrabRangeScanData();
       		updatePC = true;
-            //publishimage(overlaid1 ? data1[0].marked_left  : data1[0].left, leftpub1, "bgr8", data1[0].timestamp);	
                        
 			ros::WallTime t2 = ros::WallTime::now();						
 			//ROS_INFO_STREAM("Grab time (ms): " << (t2 - t1).toNSec()*1e-6);					
@@ -318,7 +321,15 @@ int main(int argc, char **argv)
 		if (left1Subnumber > 0)
 		{
             publishimage(overlaid1 ? data1[0].marked_left  : data1[0].left, leftpub1, "bgr8", data1[0].timestamp);	
+        }
+		if (stereoleft1Subnumber > 0)
+		{
+            publishimage(data1[0].left, stereoleftpub1, "bgr8", data1[0].timestamp);	
         }        
+		if (stereoright1Subnumber > 0)
+		{
+            publishimage(data1[0].right, stereorightpub1, "bgr8", data1[0].timestamp);	
+        }
 		if (laserscan1Subnumber > 0)
 		{
 			publishLaser(data1[0].scan, laserPub1, data1[0].timestamp);
@@ -340,3 +351,4 @@ int main(int argc, char **argv)
 	
 	PAL::Destroy();
 }
+

@@ -55,7 +55,7 @@ bool g_bRosOK = true;
 
 PAL::CameraProperties g_CameraProperties;
 
-image_transport::Publisher leftpub1, leftpub2, depthPub1, depthPub2, floorPub1, floorPub2;
+image_transport::Publisher leftpub1, leftpub2, depthPub1, depthPub2, floorPub1, floorPub2, stereoleftpub1, stereorightpub1, stereoleftpub2, stereorightpub2;
 
 ros::Publisher laserPub1, laserPub2;
 ros::Publisher pointcloudPub1, pointcloudPub2;
@@ -249,16 +249,26 @@ static void RunThread()
 		int laserscan2Subnumber = laserPub2.getNumSubscribers();
 		int depth2Subnumber = depthPub2.getNumSubscribers();
 		int floor2Subnumber = floorPub2.getNumSubscribers();				
+		int stereoleft2Subnumber = stereoleftpub2.getNumSubscribers();				
+		int stereoright2Subnumber = stereorightpub2.getNumSubscribers();						
 		
 		ros::WallTime start = ros::WallTime::now();	
 									
-		if (left2Subnumber+laserscan2Subnumber+depth2Subnumber+floor2Subnumber > 0)		
+		if (left2Subnumber+laserscan2Subnumber+depth2Subnumber+floor2Subnumber+stereoleft2Subnumber+stereoright2Subnumber > 0)		
 		{
 			overlaid2 = (left2Subnumber && laserscan2Subnumber);       
 
 		    if (left2Subnumber > 0)
 			{
 		        publishimage(overlaid2 ? data1[1].marked_left  : data1[1].left, leftpub2, "bgr8", data1[1].timestamp);
+		    }
+			if (stereoleft2Subnumber > 0)
+			{
+		        publishimage(data1[1].left, stereoleftpub2, "bgr8", data1[1].timestamp);	
+		    }        
+			if (stereoright2Subnumber > 0)
+			{
+		        publishimage(data1[1].right, stereorightpub2, "bgr8", data1[1].timestamp);	
 		    }		    
 			if (laserscan2Subnumber > 0)
 			{
@@ -302,6 +312,12 @@ int main(int argc, char **argv)
 	leftpub1 = it.advertise("/dreamvu/pal/odoa/get/left1", 1);
 	leftpub2 = it.advertise("/dreamvu/pal/odoa/get/left2", 1);
 	
+	stereoleftpub1 = it.advertise("/dreamvu/pal/odoa/get/stereo/left1", 1);		
+	stereorightpub1 = it.advertise("/dreamvu/pal/odoa/get/stereo/right1", 1);				
+
+	stereoleftpub2 = it.advertise("/dreamvu/pal/odoa/get/stereo/left2", 1);		
+	stereorightpub2 = it.advertise("/dreamvu/pal/odoa/get/stereo/right2", 1);				
+
 	depthPub1 = it.advertise("/dreamvu/pal/odoa/get/depth1", 1);
 	depthPub2 = it.advertise("/dreamvu/pal/odoa/get/depth2", 1);
 	
@@ -367,8 +383,10 @@ int main(int argc, char **argv)
 		int laserscan1Subnumber = laserPub1.getNumSubscribers();
 		int depth1Subnumber = depthPub1.getNumSubscribers();
 		int floor1Subnumber = floorPub1.getNumSubscribers();				
+		int stereoleft1Subnumber = stereoleftpub1.getNumSubscribers();				
+		int stereoright1Subnumber = stereorightpub1.getNumSubscribers();						
 		
-		int subnumber = left1Subnumber  + laserscan1Subnumber;//left2Subnumber + laserscan2Subnumber;
+		int subnumber = left1Subnumber+laserscan1Subnumber+stereoleft1Subnumber+stereoright1Subnumber;//left2Subnumber + laserscan2Subnumber;
         
 		if (subnumber > 0)
 		{
@@ -383,6 +401,14 @@ int main(int argc, char **argv)
 		if (left1Subnumber > 0)
 		{
             publishimage(overlaid1 ? data1[0].marked_left  : data1[0].left, leftpub1, "bgr8", data1[0].timestamp);	 	
+        }
+		if (stereoleft1Subnumber > 0)
+		{
+            publishimage(data1[0].left, stereoleftpub1, "bgr8", data1[0].timestamp);	
+        }        
+		if (stereoright1Subnumber > 0)
+		{
+            publishimage(data1[0].right, stereorightpub1, "bgr8", data1[0].timestamp);	
         }
 		if (laserscan1Subnumber > 0)
 		{	
