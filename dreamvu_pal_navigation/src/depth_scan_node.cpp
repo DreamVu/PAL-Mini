@@ -41,7 +41,7 @@ static const float Pi = 3.1415926535898f;
 Specify the absolute file path from which the settings are to be read.
 
 If the specified file can't be opened, default properties from the API are used.
-See PAL Documentation for more information.
+See PAL Mini Documentation for more information.
 */
 #define PROPERTIES_FILE_PATH "../catkin_ws/src/dreamvu_pal_navigation/src/SavedPalProperties.txt"
                               
@@ -258,7 +258,7 @@ int main(int argc, char **argv)
 
 	PAL::SetPathtoData(path, path2);
 
-	if (PAL::Init(width, height, camera_indexes, &def_mode) != PAL::SUCCESS) //Connect to the PAL camera
+	if (PAL::Init(width, height, camera_indexes, &def_mode) != PAL::SUCCESS) //Connect to the PAL Mini camera
 	{
 		cout<<"Init failed"<<endl;
 		return 1;
@@ -275,9 +275,9 @@ int main(int argc, char **argv)
 	if (ack_load1 != PAL::SUCCESS)
 	{
 
-		ROS_WARN("Not able to load PAL settings from properties file at default location.\n\n"
+		ROS_WARN("Not able to load PAL Mini settings from properties file at default location.\n\n"
 				 "Please update the file location by setting the Macro: PROPERTIES_FILE_PATH in pal_camera_node.cpp and run catkin_make to build the package again.");
-		ROS_INFO("Setting default properties to PAL.");
+		ROS_INFO("Setting default properties to PAL Mini.");
 
 	}
 
