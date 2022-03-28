@@ -45,7 +45,7 @@ int main( int argc, char** argv )
 	std::vector<int> camera_indexes{5};
 	
 	if(argc > 1) 
-		camera_indexes[0] = 6;
+		camera_indexes[0] = std::atoi(argv[1]);
 
 
 	PAL::Mode def_mode = PAL::Mode::LASER_SCAN;
