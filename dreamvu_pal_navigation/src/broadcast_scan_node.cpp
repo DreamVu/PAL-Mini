@@ -202,8 +202,8 @@ int main(int argc, char **argv)
 
     PAL::GetOdoaData(&g_CameraProperties);
     
-    int start_angle = g_CameraProperties.odoa_params.odoa_start_hfov; 
-    int hfov_range = g_CameraProperties.odoa_params.odoa_hfov_range;
+    int start_angle = g_CameraProperties.start_hfov; 
+    int hfov_range = g_CameraProperties.hfov_range;
     int start_col = start_angle * 1312 / 360;
     int hfov_width = 192;	
 

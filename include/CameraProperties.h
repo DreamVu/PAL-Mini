@@ -24,25 +24,24 @@ namespace PAL
 		FILTER_SPOTS = 0x8000,
         FOV = 0x10000,
 		PROJECTION = 0x20000,
-		DISPARITY_COMPUTATION = 0x40000,
 		CAMERA_HEIGHT = 0x80000,		
 		DETECTION_MODE = 0x100000,
 		GROUND_DETECTION = 0x200000,
 		YAW = 0x400000,
-		PITCH = 0x800000,		
-		ALL = 0xFFFFFF,
+		PITCH = 0x800000,
+		RANGE = 0x1000000,
+		STARTHFOV = 0x2000000,
+		HFOV_RANGE = 0x4000000,
+		STARTVFOV = 0x8000000,
+		ENDVFOV   = 0x10000000,
+				
+		ALL = 0x1FFFFFFF,
 		
-		ODOA_DEPTHTHRESH = 0x1000000,
-		ODOA_DEPTHSIGMA = 0x2000000,
-		ODOA_STEREOTHRESH = 0x4000000,
-		ODOA_STARTHFOV = 0x8000000,
-		ODOA_ENDHFOV = 0x10000000,
-		ODOA_STARTVFOV = 0x20000000,
-		ODOA_ENDVFOV   = 0x40000000,
-		ODOA_CAMERAHEIGHT = 0x80000000,
-		ODOA_DEPTHREF = 0x100000000,
-		ODOA_DEPTHTEMPORAL = 0x200000000,
-		ODOA_ALL = 0x3FF000000,
+		ODOA_DEPTHTHRESH = 0x20000000,
+		ODOA_DEPTHSIGMA = 0x40000000,
+		ODOA_DEPTHREF = 0x80000000,
+		ODOA_DEPTHTEMPORAL = 0x100000000,
+		ODOA_ALL = 0x1E0000000,
 	};
 
 	struct Resolution
@@ -56,61 +55,27 @@ namespace PAL
 		
     int depth_context_threshold;
     int depth_context_sigma;
-    int range; 
-    int odoa_start_hfov; 
-    int odoa_hfov_range; 
-    int odoa_start_vfov; 
-    int odoa_end_vfov; 
-    float camera_height;
     float depth_context_refinement; 
     int depth_context_temporal;
     
     static const int MAX_DEPTH_THRESHOLD = 254;
-	static const int MAX_DEPTH_SIGMA = 25;
-	static const int MAX_RANGE = 500;
-	static const int MAX_START_HFOV = 308;
-	static const int MAX_END_HFOV = 360;
-	static const int MAX_START_VFOV = 100;
-	static const int MAX_END_VFOV = 100;
-	static constexpr float MAX_ODOA_CAMERA_HEIGHT = 300;
+	static const int MAX_DEPTH_SIGMA = 25.;
 	static constexpr float MAX_DEPTH_REF = 4;
 	static const int MAX_DEPTH_TEMPORAL = 10;
     
-    
-    
     static const int MIN_DEPTH_THRESHOLD = 100;
 	static const int MIN_DEPTH_SIGMA = 0;
-	static const int MIN_RANGE = 0;
-	static const int MIN_START_HFOV = 0;
-	static const int MIN_END_HFOV = 52;
-	static const int MIN_START_VFOV = 0;
-	static const int MIN_END_VFOV = 0;
-	static constexpr float MIN_ODOA_CAMERA_HEIGHT = 0;
 	static constexpr float MIN_DEPTH_REF = 0;
 	static const int MIN_DEPTH_TEMPORAL = 0;
     
-    
     static const int DEFAULT_DEPTH_THRESHOLD = 200;
 	static const int DEFAULT_DEPTH_SIGMA = 0;
-	static const int DEFAULT_RANGE = 25;
-	static const int DEFAULT_START_HFOV = 0;
-	static const int DEFAULT_HFOV_RANGE = 360;
-	static const int DEFAULT_START_VFOV = 50;
-	static const int DEFAULT_END_VFOV = 90;
-	static constexpr float DEFAULT_ODOA_CAMERA_HEIGHT = 25;
-	static constexpr float DEFAULT_DEPTH_REF = 2;
+	static constexpr float DEFAULT_DEPTH_REF = 1.;
 	static const int DEFAULT_DEPTH_TEMPORAL = 5;
-	
 	
 	ODOA_Properties () :
 	depth_context_threshold (DEFAULT_DEPTH_THRESHOLD),
 	depth_context_sigma     (DEFAULT_DEPTH_SIGMA),
-	range        			(DEFAULT_RANGE),
-	odoa_start_hfov         (DEFAULT_START_HFOV),
-	odoa_hfov_range         (DEFAULT_HFOV_RANGE),
-	odoa_start_vfov         (DEFAULT_START_VFOV),
-	odoa_end_vfov           (DEFAULT_END_VFOV),
-	camera_height           (DEFAULT_ODOA_CAMERA_HEIGHT),
 	depth_context_refinement (DEFAULT_DEPTH_REF),
 	depth_context_temporal   (DEFAULT_DEPTH_TEMPORAL)
     {
@@ -152,13 +117,6 @@ namespace PAL
 		EQUI_RECTANGULAR = 0,
 		PERSPECTIVE = 1,
 	};
-
-	enum DisparityComputation
-	{
-		FAST = 0,
-		HIGH_QUALITY_A = 1,
-		HIGH_QUALITY_B = 2,
-	};
 	
 	enum DetectionMode
 	{
@@ -199,13 +157,6 @@ namespace PAL
 
 		//Projection type : equi-rectangular or perspective
 		Projection projection;
-
-		//Should this be fast but of lower quality?
-		//or of high quality but slow
-		DisparityComputation computation;
-			
-		//height of camera centre from floor in cm 
-		int camera_height;
 		
 		//Modes of the camera position to be used in person detection
 		DetectionMode detection_mode;
@@ -216,6 +167,13 @@ namespace PAL
         
         int pitch;
         
+        int range; 
+		int start_hfov; 
+		int hfov_range; 
+		int start_vfov; 
+		int end_vfov; 
+		float camera_height;
+
         static const int MAX_BRIGHTNESS = 15;
 		static const int MIN_BRIGHTNESS = -15;
 		static const int DEFAULT_BRIGHTNESS = 0;
@@ -234,7 +192,7 @@ namespace PAL
 
 		static const int MAX_GAIN = 100;
 		static const int MIN_GAIN = 0;
-		static const int DEFAULT_GAIN = 4;
+		static const int DEFAULT_GAIN = 1;
 
 		static const int MAX_WHITE_BAL_TEMP = 10000;
 		static const int MIN_WHITE_BAL_TEMP = 1000;
@@ -264,22 +222,40 @@ namespace PAL
 		static const int DEFAULT_FOV_END = 360;
 
 		static const Projection DEFAULT_PROJECTION = EQUI_RECTANGULAR;
-		static const DisparityComputation DEFAULT_COMPUTATION = HIGH_QUALITY_A;
 
 		static const DetectionMode DEFAULT_DETECTION_MODE = TABLE_TOP;
-
-		static const int DEFAULT_CAMERA_HEIGHT = 100;
 		
 		static const bool DEFAULT_GROUND_DETECTION = false;		
 		
 		static const int MAX_YAW = 359;
 		static const int MIN_YAW = 0;
-		static const int DEFAULT_YAW = 0;
+		static const int DEFAULT_YAW = 65;
 		
 		static const int MAX_PITCH = 25;
 		static const int MIN_PITCH = 0;
 		static const int DEFAULT_PITCH = 0;
 		
+		static const int MAX_RANGE = 500;
+		static const int MAX_START_HFOV = 308;
+		static const int MAX_HFOV_RANGE = 360;
+		static const int MAX_START_VFOV = 18;
+		static const int MAX_END_VFOV = 17;
+		static constexpr float MAX_CAMERA_HEIGHT = 300;
+	
+		static const int MIN_RANGE = 0;
+		static const int MIN_START_HFOV = 0;
+		static const int MIN_HFOV_RANGE = 52;
+		static const int MIN_START_VFOV = -71;
+		static const int MIN_END_VFOV = -72;
+		static constexpr float MIN_CAMERA_HEIGHT = 0;
+	
+		static const int DEFAULT_RANGE = 500;
+		static const int DEFAULT_START_HFOV = 0;
+		static const int DEFAULT_HFOV_RANGE = 360;
+		static const int DEFAULT_START_VFOV = 10;
+		static const int DEFAULT_END_VFOV = -52;
+		static constexpr float DEFAULT_CAMERA_HEIGHT = 25;
+	
 		CameraProperties() :
 			brightness           (DEFAULT_BRIGHTNESS),
 			contrast             (DEFAULT_CONTRAST), 
@@ -301,23 +277,17 @@ namespace PAL
 			fov_start            (DEFAULT_FOV_START),
 			fov_end              (DEFAULT_FOV_END),
 			projection           (DEFAULT_PROJECTION),
-			computation          (DEFAULT_COMPUTATION),
 			camera_height	     (DEFAULT_CAMERA_HEIGHT),			
 			detection_mode 	     (DEFAULT_DETECTION_MODE),
-			ground_detection      (DEFAULT_GROUND_DETECTION),
-			yaw      (DEFAULT_YAW),
-			pitch      (DEFAULT_PITCH)									
-			//odoa_params.depth_context_threshold (DEFAULT_DEPTH_THRESHOLD),
-			//odoa_params.depth_context_sigma     (DEFAULT_DEPTH_SIGMA),
-			//odoa_params.range        (DEFAULT_RANGE),
-			//odoa_params.odoa_start_hfov         (DEFAULT_START_HFOV),
-			//odoa_params.odoa_end_hfov           (DEFAULT_END_HFOV),
-			//odoa_params.odoa_start_vfov         (DEFAULT_START_VFOV),
-			//odoa_params.odoa_end_vfov           (DEFAULT_END_VFOV),
-			//odoa_params.camera_height           (DEFAULT_ODOA_CAMERA_HEIGHT),
-			//odoa_params.depth_context_refinement (DEFAULT_DEPTH_REF),
-			//odoa_params.depth_context_temporal   (DEFAULT_DEPTH_TEMPORAL)
-		
+			ground_detection     (DEFAULT_GROUND_DETECTION),
+			yaw      			 	(DEFAULT_YAW),
+			pitch      				(DEFAULT_PITCH),
+			range        			(DEFAULT_RANGE),
+			start_hfov         (DEFAULT_START_HFOV),
+			hfov_range         (DEFAULT_HFOV_RANGE),
+			start_vfov         (DEFAULT_START_VFOV),
+			end_vfov           (DEFAULT_END_VFOV)
+
 		{
 		}
 	};
