@@ -139,23 +139,15 @@ bool overlaid2 = false;
 bool updatePC = false;
 
 void PublishPC(cv::Mat pcMat, ros::Publisher pointcloudPub, std::string frame_id)
-{
-	cv::Mat newpcMat;
-	
-	#if 1
-		cv::resize(pcMat, newpcMat, cv::Size(pcMat.rows*0.75, pcMat.rows*0.75), 1, 1, INTER_NEAREST);
-	#else
-		newpcMat = pcMat;
-	#endif
-	
+{	
 	std::vector<PAL::Point> pc;
 	sensor_msgs::PointCloud2Ptr pointcloudMsg;
 	pointcloudMsg.reset(new sensor_msgs::PointCloud2);
 	ros::WallTime t1 = ros::WallTime::now();
 
 
-	PAL::Point* pc_points = (PAL::Point*) newpcMat.data;
-	long int size = newpcMat.rows*newpcMat.cols;
+	PAL::Point* pc_points = (PAL::Point*) pcMat.data;
+	long int size = pcMat.rows*pcMat.cols;
 	pointcloudMsg->is_bigendian = false;
 	pointcloudMsg->is_dense = false;
 
