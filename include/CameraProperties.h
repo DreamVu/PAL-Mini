@@ -71,7 +71,7 @@ namespace PAL
     static const int DEFAULT_DEPTH_THRESHOLD = 200;
 	static const int DEFAULT_DEPTH_SIGMA = 0;
 	static constexpr float DEFAULT_DEPTH_REF = 1.;
-	static const int DEFAULT_DEPTH_TEMPORAL = 5;
+	static const int DEFAULT_DEPTH_TEMPORAL = 1;
 	
 	ODOA_Properties () :
 	depth_context_threshold (DEFAULT_DEPTH_THRESHOLD),

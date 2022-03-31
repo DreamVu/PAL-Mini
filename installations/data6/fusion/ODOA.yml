@@ -9,6 +9,6 @@ depth_context_sigma : 0
 depth_context_refinement : 1.
 #  {0,4} - parameter to balance the sensitivity between obstacles and noise - a value of 0 means this refinement is off - higher values (3,4) increase obstacle sensitivity and lower values (1,2) reduce noise.
 # 
-depth_context_temporal : 5
+depth_context_temporal : 1
 #  {0,10} - parameter to control the temporal context of the rangescan (in number of frames)
 # 
