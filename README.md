@@ -36,7 +36,10 @@ The data files are delivered along with the purchase of the PAL Mini camera. In 
       ./setup.sh
       
 ## Documentation 
-For rest of the evaluation of the software, please read the [Evaluation Manual](https://github.com/DreamVu/PAL-Mini/blob/Ubuntu-18.04/docs/PAL%20Mini%20Documentation.pdf)
+For rest of the evaluation of the software, please read the 
+- [Evaluation Manual](https://docs.google.com/document/d/e/2PACX-1vT-w_gQ5NrPqKz7-7aXqzSt-zG2-8rs4GcoPA6FJNgrZ9VAXBJMCgo0dBRcJE57ygRLDr3dyet1HRHR/pub)
+- [Design Guide](https://docs.google.com/document/d/e/2PACX-1vThW3yq0joYAVzLkc7e1H13Rxbl0aLCf9AG6gyKXX0WukTBrQczJn1sazhj-Ze2lxzEud7E1dMEhmwY/pub)
+- [ROS Application Note](https://docs.google.com/document/d/e/2PACX-1vS8XpaUZAu6q5TRsJzVaWwDdjwRKgArtJ4zVdHj6nsrHrvVfGSlu3hm9ecHhCMaBqLlIYdlguVTJJH-/pub) 
 
 ## Support 
 If you need help or more informations check our [Help Center](https://support.dreamvu.com/portal/en/home) or join our [Community](https://support.dreamvu.com/portal/en/community/dreamvu-inc) or you can email us directly at support@dreamvu.com 
