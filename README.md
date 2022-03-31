@@ -36,7 +36,7 @@ The data files are delivered along with the purchase of the PAL Mini camera. In 
       ./setup.sh
       
 ## Documentation 
-For rest of the evaluation of the ODOA software, please read the [Evaluation Manual](https://github.com/DreamVu/PAL-Mini/blob/Ubuntu-18.04/docs/PAL%20Mini%20Documentation.pdf)
+For rest of the evaluation of the software, please read the [Evaluation Manual](https://github.com/DreamVu/PAL-Mini/blob/Ubuntu-18.04/docs/PAL%20Mini%20Documentation.pdf)
 
 ## Support 
 If you need help or more informations check our [Help Center](https://support.dreamvu.com/portal/en/home) or join our [Community](https://support.dreamvu.com/portal/en/community/dreamvu-inc) or you can email us directly at support@dreamvu.com 
