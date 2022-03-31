@@ -64,6 +64,8 @@ int main( int argc, char** argv )
 		return 1;
 	}
 
+	PAL::EnablePC(false);
+	
 	usleep(1000000);
 
 	//discarding initial frames
