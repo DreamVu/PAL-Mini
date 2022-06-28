@@ -18,9 +18,6 @@ if test -f "$File2"; then
     cp data/fcm.bin ../bin_files/root-data/data/bin_files/
 fi
 
-cp -r er-files/ /data/lut/
-cp -r er-files/ ../bin_files/root-data/data/lut/
-rm -rf er-files
 
 if $validated; then     
     rm -rf data	   
