@@ -39,8 +39,6 @@ int main( int argc, char** argv )
 	namedWindow( "PAL Mini Range Scan", WINDOW_NORMAL ); // Create a window for display.
 
 	int width, height;
-	PAL::Mode mode = PAL::Mode::LASER_SCAN;
-
 	std::vector<int> camera_indexes{5};
 	
 	if(argc > 1) 
@@ -62,7 +60,8 @@ int main( int argc, char** argv )
 		cout<<"Init failed"<<endl;
 		return 1;
 	}
-	PAL::EnablePC(false);
+
+	PAL::SetAPIMode(PAL::API_Mode::RANGE_SCAN);
 	usleep(1000000);
 
 	//discarding initial frames

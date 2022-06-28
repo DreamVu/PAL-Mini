@@ -63,7 +63,9 @@ int main( int argc, char** argv )
 		cout<<"Init failed"<<endl;
 		return 1;
 	}
-	PAL::EnablePC(false);
+	
+	PAL::SetAPIMode(PAL::API_Mode::STEREO);
+	
 	usleep(1000000);
 
 	//discarding initial frames
