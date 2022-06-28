@@ -342,7 +342,7 @@ int main(int argc, char **argv)
 		return 1;
 	}
 	
-	EnablePC(true);
+    PAL::SetAPIMode(PAL::API_Mode::ALL_MODE);
 	
 	//Loading properties from the file
 	PAL::Acknowledgement ack_load1 = PAL::LoadProperties(PROPERTIES_FILE_PATH, &g_CameraProperties);

@@ -162,7 +162,7 @@ static void RunThread()
 		{
 			PublishPC(data1[0].point_cloud);
 		}
-		usleep(50000);
+		usleep(20000);
 		
 		ros::WallTime end = ros::WallTime::now();						
 		//ROS_INFO_STREAM("Grab time 2 (ms): " << (end - start).toNSec()*1e-6);
@@ -244,11 +244,9 @@ int main(int argc, char **argv)
 	floorPub = it.advertise("/dreamvu/pal/odoa/get/ground", 1);    
 	
 	int width, height;
-	PAL::Mode mode = PAL::Mode::LASER_SCAN;
-
     std::vector<int> camera_indexes{5};
     
-    PAL::Mode def_mode = PAL::Mode::LASER_SCAN;
+    PAL::Mode init_mode = PAL::Mode::LASER_SCAN;
 	
 	char path[1024];
 	sprintf(path,"/data%d/",camera_indexes[0]);
@@ -258,7 +256,7 @@ int main(int argc, char **argv)
 
 	PAL::SetPathtoData(path, path2);
 
-	if (PAL::Init(width, height, camera_indexes, &def_mode) != PAL::SUCCESS) //Connect to the PAL Mini camera
+	if (PAL::Init(width, height, camera_indexes, &init_mode) != PAL::SUCCESS) //Connect to the PAL Mini camera
 	{
 		cout<<"Init failed"<<endl;
 		return 1;
@@ -266,7 +264,7 @@ int main(int argc, char **argv)
 
 	//cout<<"Init"<<endl;
 	usleep(100000);
-	EnablePC(true);
+    PAL::SetAPIMode(PAL::API_Mode::ALL_MODE);
 
 	//Loading properties from the file
 	PAL::Acknowledgement ack_load1 = PAL::LoadProperties(PROPERTIES_FILE_PATH, &g_CameraProperties);
@@ -296,19 +294,61 @@ int main(int argc, char **argv)
 	while (g_bRosOK)
 	{
 
+		int g_emode = 0;
+
 		//Getting no of subscribers for each publisher
 		int left1Subnumber = leftpub1.getNumSubscribers();
 		int laserscan1Subnumber = laserPub1.getNumSubscribers();
 		int depth1Subnumber = depthPub1.getNumSubscribers();
 		int floorSubnumber = floorPub.getNumSubscribers();
 		int stereoleft1Subnumber = stereoleftpub1.getNumSubscribers();				
-		int stereoright1Subnumber = stereorightpub1.getNumSubscribers();						
+		int stereoright1Subnumber = stereorightpub1.getNumSubscribers();
+
 		int subnumber = left1Subnumber+laserscan1Subnumber+pointcloudSubnumber+floorSubnumber+stereoright1Subnumber+stereoleft1Subnumber;
         bool overlaid1 = false;
         updatePC = false;
-        
+
+		if (left1Subnumber > 0)
+		{
+            publishimage(data1[0].marked_left, leftpub1, "bgr8", data1[0].timestamp);
+            g_emode = g_emode | PAL::API_Mode::RANGE_SCAN;	
+        }
+		if (stereoleft1Subnumber > 0)
+		{
+            publishimage(data1[0].left, stereoleftpub1, "bgr8", data1[0].timestamp);
+            g_emode = g_emode | PAL::API_Mode::STEREO;	            	
+        }        
+		if (stereoright1Subnumber > 0)
+		{
+            publishimage(data1[0].right, stereorightpub1, "bgr8", data1[0].timestamp);	
+            g_emode = g_emode | PAL::API_Mode::STEREO;	            	
+
+        }
+		if (laserscan1Subnumber > 0)
+		{
+			publishLaser(data1[0].scan, laserPub1, data1[0].timestamp);
+            g_emode = g_emode | PAL::RANGE_SCAN;	            	
+
+		}		
+		if (depth1Subnumber > 0)
+		{
+			OnDepthPanorama(data1[0].distance);
+            g_emode = g_emode | PAL::API_Mode::DEPTH;	            	
+		}		
+		if (floorSubnumber > 0)
+		{
+            publishimage(data1[0].de_out, floorPub, "mono8", data1[0].timestamp);
+            g_emode = g_emode | PAL::RANGE_SCAN;	            	
+        }
+         
+        if(pointcloudSubnumber)
+        {
+            g_emode = g_emode | PAL::API_Mode::POINT_CLOUD;	            	        
+        } 
+               
 		if (subnumber > 0)
 		{
+		    PAL::SetAPIMode(g_emode);
 			ros::WallTime t1 = ros::WallTime::now();
 			overlaid1 = (left1Subnumber && laserscan1Subnumber);       
 
@@ -318,30 +358,7 @@ int main(int argc, char **argv)
 			ros::WallTime t2 = ros::WallTime::now();						
 			//ROS_INFO_STREAM("Grab time (ms): " << (t2 - t1).toNSec()*1e-6);					
 		}
-		if (left1Subnumber > 0)
-		{
-            publishimage(overlaid1 ? data1[0].marked_left  : data1[0].left, leftpub1, "bgr8", data1[0].timestamp);	
-        }
-		if (stereoleft1Subnumber > 0)
-		{
-            publishimage(data1[0].left, stereoleftpub1, "bgr8", data1[0].timestamp);	
-        }        
-		if (stereoright1Subnumber > 0)
-		{
-            publishimage(data1[0].right, stereorightpub1, "bgr8", data1[0].timestamp);	
-        }
-		if (laserscan1Subnumber > 0)
-		{
-			publishLaser(data1[0].scan, laserPub1, data1[0].timestamp);
-		}		
-		if (depth1Subnumber > 0)
-		{
-			OnDepthPanorama(data1[0].distance);
-		}		
-		if (floorSubnumber > 0)
-		{
-            publishimage(data1[0].de_out, floorPub, "mono8", data1[0].timestamp);
-        }
+		
 		
 
 		ros::spinOnce();
