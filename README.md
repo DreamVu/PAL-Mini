@@ -27,7 +27,7 @@ The Package can be installed by adding the PPA Repository. Steps are as follows:
 
 Once complete please reboot the system. The packages will be installed in \~/DreamVu folder. To preview the PAL USB camera run the below command 
     
-    ~/DreamVu/PAL-Mini/Explorer/Explorer
+    ~/DreamVu/PAL-Mini/Explorer/x86_64/Explorer
     
     
 ## ROS Melodic Installations
