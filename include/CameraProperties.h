@@ -34,14 +34,18 @@ namespace PAL
 		HFOV_RANGE = 0x4000000,
 		STARTVFOV = 0x8000000,
 		ENDVFOV   = 0x10000000,
-				
-		ALL = 0x1FFFFFFF,
+		DEPTH_SCALE = 0x20000000,
+		POINTCLOUD_DENSITY = 0x40000000,
+		IMAGE_STABILIZATION = 0x80000000,
+		DEPTH_STABILIZATION = 0x100000000,		
+		ALL = 0x1FFFFFFFF,
 		
-		ODOA_DEPTHTHRESH = 0x20000000,
-		ODOA_DEPTHSIGMA = 0x40000000,
-		ODOA_DEPTHREF = 0x80000000,
-		ODOA_DEPTHTEMPORAL = 0x100000000,
-		ODOA_ALL = 0x1E0000000,
+		ODOA_DEPTHTHRESH = 0x200000000,
+		ODOA_DEPTHSIGMA = 0x400000000,
+		ODOA_DEPTHREF = 0x800000000,
+		ODOA_DEPTHTEMPORAL = 0x1000000000,
+		ODOA_BIAS = 0x2000000000,
+		ODOA_ALL = 0x3E00000000,
 	};
 
 	struct Resolution
@@ -57,27 +61,32 @@ namespace PAL
     int depth_context_sigma;
     float depth_context_refinement; 
     int depth_context_temporal;
+    int bias;
     
     static const int MAX_DEPTH_THRESHOLD = 254;
-	static const int MAX_DEPTH_SIGMA = 25.;
+	static const int MAX_DEPTH_SIGMA = 25;
 	static constexpr float MAX_DEPTH_REF = 4;
 	static const int MAX_DEPTH_TEMPORAL = 10;
+	static const int MAX_BIAS = 25;
     
     static const int MIN_DEPTH_THRESHOLD = 100;
 	static const int MIN_DEPTH_SIGMA = 0;
 	static constexpr float MIN_DEPTH_REF = 0;
 	static const int MIN_DEPTH_TEMPORAL = 0;
+	static const int MIN_BIAS = 0;
     
-    static const int DEFAULT_DEPTH_THRESHOLD = 200;
+    static const int DEFAULT_DEPTH_THRESHOLD = 212;
 	static const int DEFAULT_DEPTH_SIGMA = 0;
 	static constexpr float DEFAULT_DEPTH_REF = 1.;
 	static const int DEFAULT_DEPTH_TEMPORAL = 1;
+	static const int DEFAULT_BIAS = 12;
 	
 	ODOA_Properties () :
 	depth_context_threshold (DEFAULT_DEPTH_THRESHOLD),
 	depth_context_sigma     (DEFAULT_DEPTH_SIGMA),
 	depth_context_refinement (DEFAULT_DEPTH_REF),
-	depth_context_temporal   (DEFAULT_DEPTH_TEMPORAL)
+	depth_context_temporal   (DEFAULT_DEPTH_TEMPORAL),
+	bias 					(DEFAULT_BIAS)
     {
     }
 	};
@@ -126,6 +135,15 @@ namespace PAL
 		AUTO = 4,
 	};
 
+	enum API_Mode
+	{
+		STEREO = 0x1,
+		DEPTH = 0x2,
+		RANGE_SCAN = 0x4,
+		POINT_CLOUD = 0x8,
+		ALL_MODE = 0xF,
+	};
+	
 	struct CameraProperties
 	{
 	    int brightness;
@@ -174,6 +192,28 @@ namespace PAL
 		int end_vfov; 
 		float camera_height;
 
+		int depth_scale_factor;
+		int point_cloud_density;
+
+		int image_stabilization;
+		int depth_stabilization;
+		
+		static const int MAX_IMAGE_STABILIZATION = 6;
+		static const int MIN_IMAGE_STABILIZATION = 0;
+		static const int DEFAULT_IMAGE_STABILIZATION = 2;
+		
+		static const int MAX_DEPTH_STABILIZATION = 6;
+		static const int MIN_DEPTH_STABILIZATION = 0;
+		static const int DEFAULT_DEPTH_STABILIZATION = 5;
+		
+		static const int MAX_DEPTH_SCALE = 30;
+		static const int MIN_DEPTH_SCALE = 1;
+		static const int DEFAULT_DEPTH_SCALE = 5;
+		
+		static const int MAX_POINT_CLOUD_DENSITY = 25;
+		static const int MIN_POINT_CLOUD_DENSITY = 1;
+		static const int DEFAULT_POINT_CLOUD_DENSITY = 9;
+		
         static const int MAX_BRIGHTNESS = 15;
 		static const int MIN_BRIGHTNESS = -15;
 		static const int DEFAULT_BRIGHTNESS = 0;
@@ -245,8 +285,8 @@ namespace PAL
 		static const int MIN_RANGE = 0;
 		static const int MIN_START_HFOV = 0;
 		static const int MIN_HFOV_RANGE = 52;
-		static const int MIN_START_VFOV = -71;
-		static const int MIN_END_VFOV = -72;
+		static const int MIN_START_VFOV = -70;
+		static const int MIN_END_VFOV = -71;
 		static constexpr float MIN_CAMERA_HEIGHT = 0;
 	
 		static const int DEFAULT_RANGE = 500;
@@ -286,8 +326,11 @@ namespace PAL
 			start_hfov         (DEFAULT_START_HFOV),
 			hfov_range         (DEFAULT_HFOV_RANGE),
 			start_vfov         (DEFAULT_START_VFOV),
-			end_vfov           (DEFAULT_END_VFOV)
-
+			end_vfov           (DEFAULT_END_VFOV),
+			depth_scale_factor (DEFAULT_DEPTH_SCALE),
+			point_cloud_density (DEFAULT_POINT_CLOUD_DENSITY),
+			image_stabilization  (DEFAULT_IMAGE_STABILIZATION),
+			depth_stabilization  (DEFAULT_DEPTH_STABILIZATION) 
 		{
 		}
 	};

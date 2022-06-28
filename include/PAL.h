@@ -135,7 +135,10 @@ namespace PAL
 		bool SavePointCloud(const char* fileName, cv::Mat pcMat);
 		std::vector<PAL::Data::ODOA_Data> GrabRangeScanData();
 		PAL::Acknowledgement EnablePC(bool PC);
-		void SetCliffMaskFlag(bool flag);	
+		void SetCliffMaskFlag(bool flag);
+		void PauseComputation(bool flag);
+		void SetAPIMode(int mode);
+		
 	
 }
 

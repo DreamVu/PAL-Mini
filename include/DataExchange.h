@@ -82,6 +82,20 @@ namespace PAL
         };
         
         
+        struct Cliff : Stereo
+        {
+            cv::Mat cliff;
+        };
+        
+        struct CliffOutput : Common
+        {
+        	cv::Mat cliffmask;
+        	cv::Mat col_sum;
+        	cv::Mat opt_floor;
+        	cv::Mat opt_wall;
+        
+        };
+        
         struct Depth : Stereo
         {
             cv::Mat depth;
@@ -108,6 +122,7 @@ namespace PAL
             cv::Mat right;
             cv::Mat depth;
             cv::Mat floor_mask;
+            cv::Mat display_rgb;
         };          
         
         struct FloorFocalMap : Common
@@ -130,9 +145,10 @@ namespace PAL
             cv::Mat right;
 	        cv::Mat disparity; 
 	        cv::Mat depth;
+	        cv::Mat mask;
 	    };
 	
-	    struct ODOA_Data : Common
+	    struct ODOA_Data : CliffOutput
 	    {
 	        cv::Mat left;
 	        cv::Mat right;
