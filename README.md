@@ -1,39 +1,40 @@
 # PAL Mini
 The most compact 360° 3D Vision System. [PAL-Mini](https://dreamvu.com/pal-mini/) is the world's smallest 360° depth camera. It is extremel low-power and easy to add to any sensor stack to eliminate near-field blind spots.  
 
-Please follow the instructions given below on any of the Intel x86 CPU to install the software.
 
-## Step 1. Clone the repository 
--     sudo apt-get install git-lfs
-      git clone -b Ubuntu-18.04 --single-branch https://github.com/DreamVu/PAL-Mini.git
-      cd PAL-Mini
-      git lfs pull
-      
-## Step 2. Installing Dependencies 
-Confirm the following dependencies. These are must have to proceed further
+## Installation
 
-- ### Ubuntu 18.04 64 bit
+The Package can be installed in two ways:
 
-- ### OpenCV 3.4.4 and OpenCV Contrib 3.4.4 libraries. 
-  Follow these steps to install the required OpenCV dependencies. 
--      cd installations
-       chmod +x ./*.sh
-       ./opencv.sh
+### Method 1. Using Debian packages
 
-- ### Python 3.6 libraries (pytorch, torchvision, numpy, PIL, etc.)
+The Package can be downloaded directly from [here](https://github.com/DreamVu/ppa/blob/main/pal-mini/pal-mini?raw=true) and installed by running the below command from the location where it is downloaded,
 
-## Step 3. Installing PAL-Mini SDK
-      cd installations
-      chmod +x ./*.sh
-      ./install.sh 
+    chmod +x pal-mini && ./pal-mini
 
-Once complete please reboot the system.
+### Method 2. Using PPA Repository
 
-## Step 4. Installing Camera Data File
-The data files are delivered along with the purchase of the PAL Mini camera. In case you have not received them, please request for the files by filling out a [form](https://support.dreamvu.com/portal/en/newticket)
+The Package can be installed by adding the PPA Repository. Steps are as follows:
 
-      chmod +x setup.sh
-      ./setup.sh
+#### Step 1. Adding DreamVu PPAs
+    sudo wget -qO - https://dreamvu.github.io/ppa/KEY.gpg | sudo apt-key add -
+    sudo wget -qO /etc/apt/sources.list.d/dreamvu.list https://dreamvu.github.io/ppa/dreamvu.list
+    
+#### Step 2. Installing PAL Mini
+    sudo apt update
+    sudo apt install ppa-pal-mini
+    sudo apt install pal-mini
+
+Once complete please reboot the system. The packages will be installed in \~/DreamVu folder. To preview the PAL USB camera run the below command 
+    
+    ~/DreamVu/PAL-Mini/Explorer/Explorer
+    
+    
+## ROS Melodic Installations
+
+Ubuntu 18.04 supports ROS Melodic. The Package can be installed by running the below command after installing PAL Mini,
+
+    sudo apt install dreamvu-ros-melodic
       
 ## Documentation 
 For rest of the evaluation of the software, please read the 
