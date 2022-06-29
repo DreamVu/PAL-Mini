@@ -17,6 +17,9 @@ The Package can be downloaded directly from [here](https://github.com/DreamVu/pp
 The Package can be installed by adding the PPA Repository. Steps are as follows:
 
 #### Step 1. Adding DreamVu PPAs
+
+If you have installed other DreamVu's software, you may skip this step.
+
     sudo wget -qO - https://dreamvu.github.io/ppa/KEY.gpg | sudo apt-key add -
     sudo wget -qO /etc/apt/sources.list.d/dreamvu.list https://dreamvu.github.io/ppa/dreamvu.list
     
@@ -25,16 +28,32 @@ The Package can be installed by adding the PPA Repository. Steps are as follows:
     sudo apt install ppa-pal-mini
     sudo apt install pal-mini
 
-Once complete please reboot the system. The packages will be installed in \~/DreamVu folder. To preview the PAL USB camera run the below command 
-    
+Once complete please reboot the system. The packages will be installed in \~/DreamVu folder. 
+
+To preview the PAL Mini camera for x86_64 architecture run the below command 
+ 
     ~/DreamVu/PAL-Mini/Explorer/x86_64/Explorer
     
+ To preview the PAL Mini camera for ARM64 architecture run the below command
+ 	
+    ~/DreamVu/PAL-Mini/Explorer/arm64/Explorer	 
     
-## ROS Melodic Installations
+## ROS Installations
 
 Ubuntu 18.04 supports ROS Melodic. The Package can be installed by running the below command after installing PAL Mini,
 
     sudo apt install dreamvu-ros-melodic
+    
+Ubuntu 20.04 supports ROS Foxy and Noetic. These Packages can be installed by running the below command after installing PAL Mini,
+
+    sudo apt install dreamvu-ros-noetic
+    sudo apt install dreamvu-ros-foxy
+    
+## Turtlebot-Nav
+  
+Turtlebot-Nav support is also provided for both the version and can be installed using following command,
+
+    sudo apt install ros-melodic-turtlebot-nav    
       
 ## Documentation 
 For rest of the evaluation of the software, please read the 
