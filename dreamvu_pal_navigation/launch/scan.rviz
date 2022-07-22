@@ -81,7 +81,7 @@ Visualization Manager:
       Queue Size: 1
       Selectable: true
       Size (Pixels): 3
-      Size (m): 9.999999747378752e-5
+      Size (m): 0.05
       Style: Squares
       Topic: /dreamvu/pal/odoa/get/scan
       Unreliable: false
