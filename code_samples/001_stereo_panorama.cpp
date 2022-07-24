@@ -58,7 +58,7 @@ int main( int argc, char** argv )
 
 	PAL::SetPathtoData(path, path2);
 
-	if (PAL::Init(width, height, camera_indexes, &def_mode) != PAL::SUCCESS) //Connect to the PAL camera
+	if (PAL::Init(width, height, camera_indexes, &def_mode) != PAL::SUCCESS) //Connect to the PAL Mini camera
 	{
 		cout<<"Init failed"<<endl;
 		return 1;
