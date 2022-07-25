@@ -1,6 +1,6 @@
 /*
 
-CODE SAMPLE # 002: PAL Mini Camera Properties
+CODE SAMPLE # 005: PAL Mini Camera Properties
 This code will grab the left & depth panorama and display in a window using opencv
 
 
@@ -97,7 +97,7 @@ int main( int argc, char** argv )
     printf("O key toggles AUTO WHITE BALANCE property.\n");
     printf("P key toggles AUTO EXPOSURE property.\n\n");
 
-    printf("C key saves the current left+right panorama image to a numbered file.\n\n");
+    printf("C key saves the current left+depth panorama image to a numbered file.\n\n");
 
     printf("N key saves the current camera properties to a file. \n");
     printf("L key loads the camera properties from the saved file.\n");
@@ -256,10 +256,10 @@ int main( int argc, char** argv )
                 camera_data.auto_exposure = !camera_data.auto_exposure;
                 flags |= PAL::AUTO_EXPOSURE;
                 break;
-            case 'c': // Saves current left+right image to disk as a .png file 
+            case 'c': // Saves current left+depth image to disk as a .png file 
             case 'C': 
                 sprintf(fileName,"./pal_image_%03d.png", frame++);
-                cv::imwrite(fileName, output);
+                cv::imwrite(fileName, display);
                 break;           
             case 'n': // Saves camera properties to file
             case 'N':
