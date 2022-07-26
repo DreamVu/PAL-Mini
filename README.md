@@ -1,6 +1,10 @@
 # PAL Mini
 The most compact 360° 3D Vision System. [PAL-Mini](https://dreamvu.com/pal-mini/) is the world's smallest 360° depth camera. It is extremel low-power and easy to add to any sensor stack to eliminate near-field blind spots.  
 
+## Pre-requisites Installation
+ This section is only applicable for Ubuntu 18.04 system with Nvidia GPU.
+ 
+ Please follow the steps on the official links of [CUDA](https://developer.nvidia.com/cuda-10.2-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=debnetwork) 10.2 & [TensorRT](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html#installing-debian) to install the required GPU libraries.
 
 ## Installation
 
