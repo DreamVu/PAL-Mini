@@ -68,11 +68,6 @@ int main( int argc, char** argv )
 	
 	usleep(1000000);
 
-	//discarding initial frames
-	std::vector<PAL::Data::ODOA_Data> discard;
-	for(int i=0; i<5;i++)
-		discard =  PAL::GrabRangeScanData();		
-
 	PAL::CameraProperties data;
 	PAL::Acknowledgement ack_load = PAL::LoadProperties("../Explorer/SavedPalProperties.txt", &data);
 
@@ -80,6 +75,11 @@ int main( int argc, char** argv )
 	{
 		cout<<"Error Loading settings! Loading default values."<<endl;
 	}
+
+	//discarding initial frames
+	std::vector<PAL::Data::ODOA_Data> discard;
+	for(int i=0; i<5;i++)
+		discard =  PAL::GrabRangeScanData();		
 
 	//width and height are the dimensions of each panorama.
 	//Each of the panoramas are displayed at otheir original resolution.
