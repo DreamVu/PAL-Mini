@@ -1,19 +1,12 @@
 ARCH=$(uname -p)
-NO_OF_GPU=0
-
-GPU=$(sudo lshw -C display | grep vendor)
-if [[ $GPU =~ "Nvidia" || $GPU =~ "NVIDIA" ]]; then
-    NO_OF_GPU=1
-else    
-    NO_OF_GPU=0
-fi
+NO_OF_GPU=$(lspci | grep -ci vga)
 UBUNTU_VERSION=$(lsb_release -sc)
 GPU_LIBS=""
 PYTHON_LIBS=""
 
 if [ "$ARCH" = "x86_64" ]; 
 then
-    if [ $NO_OF_GPU -eq 1 ]; 
+    if [ $NO_OF_GPU -eq 2 ]; 
     then
     	GPU_LIBS="-L/usr/local/cuda/lib64 -lnvinfer -lcudart /usr/src/tensorrt/bin/common/logger.o"	     
     else
