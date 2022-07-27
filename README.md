@@ -48,7 +48,8 @@ Ubuntu 18.04 supports ROS Melodic. The Package can be installed by running the b
 
     sudo apt install pal-mini-melodic-navigation
     
-Ubuntu 20.04 supports ROS Noetic and ROS2 Foxy.\
+Ubuntu 20.04 supports ROS Noetic and ROS2 Foxy.
+
 To install ROS Noetic Navigation package use the below command:
 
     sudo apt install pal-mini-noetic-navigation
