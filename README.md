@@ -44,17 +44,19 @@ To preview the PAL Mini camera for x86_64 architecture run the below command
     
 ## ROS Installations
 
-Ubuntu 18.04 supports ROS Melodic. The Package can be installed by running the below command after installing PAL Mini,
+### Ubuntu 18.04 supports ROS Melodic. 
+
+#### To install ROS Melodic Navigation package use the below command:
 
     sudo apt install pal-mini-melodic-navigation
     
-Ubuntu 20.04 supports ROS Noetic and ROS2 Foxy.
+### Ubuntu 20.04 supports ROS Noetic and ROS2 Foxy.
 
-To install ROS Noetic Navigation package use the below command:
+#### To install ROS Noetic Navigation package use the below command:
 
     sudo apt install pal-mini-noetic-navigation
 
-To install ROS2 Foxy Navigation package use the below command:
+#### To install ROS2 Foxy Navigation package use the below command:
 
     sudo apt install pal-mini-foxy-navigation
     
