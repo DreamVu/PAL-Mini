@@ -4,7 +4,7 @@ The most compact 360° 3D Vision System. [PAL-Mini](https://dreamvu.com/pal-mini
 ## Pre-requisites Installation
  This section is only applicable for Ubuntu 18.04 system with Nvidia GPU.
  
- Please follow the steps on the official links of [CUDA](https://developer.nvidia.com/cuda-10.2-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=debnetwork) 10.2 & [TensorRT](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html#installing-debian) to install the required GPU libraries.
+ Please follow the steps on the official links of [CUDA](https://developer.nvidia.com/cuda-10.2-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=deblocal) 10.2 & [TensorRT](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html#installing-debian) to install the required GPU libraries.
 
 ## Installation
 
@@ -44,16 +44,19 @@ To preview the PAL Mini camera for x86_64 architecture run the below command
     
 ## ROS Installations
 
-Ubuntu 18.04 supports ROS Melodic. The Package can be installed by running the below command after installing PAL Mini,
+### Ubuntu 18.04 supports ROS Melodic. 
+
+#### To install ROS Melodic Navigation package use the below command:
 
     sudo apt install pal-mini-melodic-navigation
     
-Ubuntu 20.04 supports ROS Noetic and ROS2 Foxy.\
-To install ROS Noetic Navigation package use the below command:
+### Ubuntu 20.04 supports ROS Noetic and ROS2 Foxy.
+
+#### To install ROS Noetic Navigation package use the below command:
 
     sudo apt install pal-mini-noetic-navigation
 
-To install ROS2 Foxy Navigation package use the below command:
+#### To install ROS2 Foxy Navigation package use the below command:
 
     sudo apt install pal-mini-foxy-navigation
     
